@@ -51,4 +51,9 @@
         </tbody>
     </table>
     
+    <form action="{% url 'menu:index' %}" method="post">
+        {% csrf_token %}
+        <button>BackMenu</button>
+    </form>
+    
 {% endblock %}
