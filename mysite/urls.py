@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.views.generic import RedirectView
 
 urlpatterns = [
+    path('menu/', include('menu.urls')),
     path('todo/', include('todo.urls')),
     path('admin/', admin.site.urls),
-    path('',  RedirectView.as_view(url='/todo/')),
+    path('',  RedirectView.as_view(url='/menu/')),
 ]

@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'menu.apps.MenuConfig',
     'todo.apps.TodoConfig',
     'django.contrib.admin',
     'django.contrib.auth',
