@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from .models import Post
 from .forms import PostForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 @login_required

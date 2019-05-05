@@ -23,5 +23,5 @@ urlpatterns = [
     path('menu/', include('menu.urls')),
     path('todo/', include('todo.urls')),
     path('admin/', admin.site.urls),
-    path('',  RedirectView.as_view(url='/menu/')),
+    path('',  include('menu.urls')),
 ]
