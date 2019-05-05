@@ -1,26 +1,27 @@
-{% extends 'todo/base.html' %}
+{% extends 'menu/base.html' %}
 
 {% block content %}
-    <h1>Menu</h1>
-    <label class="col-sm-3 control-label">AppList</label>
-    <form action="{% url 'todo:index' %}" method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-default">
-            <i class="fa fa-plus"></i>Todo
-        </button>
-    </form>
-    <form action="{% url 'accounts:signup' %}" method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-default">
-            <i class="fa fa-plus"></i>新規アカウント登録
-        </button>
-    </form>
-    <label class="col-sm-3 control-label">Logout</label>
-    <form method="post" action="{% url 'logout' %}">
+    <form style="padding-top:10px" method="post" action="{% url 'logout' %}" class="float-right">
       {% csrf_token %}
-        <button type="submit" class="btn btn-default">
+        <button type="submit" class="button button-outline">
             <i class="fa fa-plus"></i>ログアウト
         </button>
     </form>
+    <h1>Menu</h1>
+    <label class="col-sm-3 control-label">AppList</label>
+    <div class="row">
+        <form class="column" action="{% url 'todo:index' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-default">
+                <i class="fa fa-plus"></i>Todo
+            </button>
+        </form>
+        <form class="column" action="{% url 'accounts:signup' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-default">
+                <i class="fa fa-plus"></i>新規アカウント登録
+            </button>
+        </form>
+    </div>
     
 {% endblock %}
