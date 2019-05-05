@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
  
 {% block content %}
-<h1>Sign up</h1>
+<h1>新規アカウント登録</h1>
 <section class="common-form">
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="submit">Sign up</button>
+        <button type="submit" class="submit">登録</button>
     </form>
 </section>
+<form action="{% url 'menu:index' %}" method="post">
+        {% csrf_token %}
+        <button>◀︎Back</button>
+</form>
 {% endblock %}
