@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}新規アカウント登録{% endblock %}
+
+{% block content %}
+<h1>新規アカウント登録</h1>
+<section class="common-form">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit">登録</button>
+    </form>
+</section>
+<form action="{% url 'menu:index' %}" method="post">
+        {% csrf_token %}
+        <button>◀︎Back</button>
+</form>
+{% endblock %}
