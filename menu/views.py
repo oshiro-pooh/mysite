@@ -3,5 +3,6 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 
 # Create your views here.
+@login_required
 def index(request):
     return render(request, 'menu/menu.html')
