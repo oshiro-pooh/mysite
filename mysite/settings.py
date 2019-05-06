@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig', 
     'menu.apps.MenuConfig',
     'todo.apps.TodoConfig',
+    'weather.apps.WeatherConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
