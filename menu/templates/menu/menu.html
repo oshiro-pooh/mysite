@@ -16,10 +16,10 @@
                 <i class="fa fa-plus"></i>Todo
             </button>
         </form>
-        <form class="column" action="{% url 'whether:index' %}" method="post">
+        <form class="column" action="{% url 'weather:index' %}" method="post">
             {% csrf_token %}
             <button type="submit" class="btn btn-default">
-                <i class="fa fa-plus"></i>Whether
+                <i class="fa fa-plus"></i>Weather
             </button>
         </form>
         <form class="column" action="{% url 'accounts:signup' %}" method="post">

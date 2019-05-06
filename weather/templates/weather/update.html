@@ -1,0 +1,11 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+<h1>Update</h1>
+    
+<form action="{% url 'weather:index' %}" method="post">
+    {% csrf_token %}
+    <button>◀︎Back</button>
+</form>
+    
+{% endblock %}

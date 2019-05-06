@@ -1,0 +1,15 @@
+{% extends 'weather/base.html' %}
+
+{% block content %}
+<form style="padding-top:10px;" action="{% url 'weather:next' %}" method="post" class="float-right">
+    {% csrf_token %}
+    <button class="button button-outline">update</button>
+</form>
+<h1>Weather</h1>
+    
+<form action="{% url 'menu:index' %}" method="post">
+    {% csrf_token %}
+    <button>◀︎Back</button>
+</form>
+    
+{% endblock %}
