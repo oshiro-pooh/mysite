@@ -33,6 +33,8 @@ def update(request):
   for pref in root.iter('pref'):
     pref_entity = Pref(name=pref.attrib['title'])
     pref_entity.save()
-    #for city in pref.iter('city'):
-    #  City(pref_id=pref_entity.objects.values_list('id', flat=True)[0] ,name=city.attrib['title'], city_id=city.attrib['id'])
+    for city in pref.iter('city'):
+      print(city.attrib['id'])
+      ciyte_entity = City(pref_id=pref_entity.id ,name=city.attrib['title'], city_id=city.attrib['id'])
+      ciyte_entity.save()
   return render(request, 'weather/update.html')
