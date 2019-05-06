@@ -22,7 +22,7 @@ def update(request):
   citys = City.objects.all()
   citys.delete()
   
-  # livedoor提供のcity１IDが定義されたxmlファイルを抽出
+  # livedoor提供のcityIDが定義されたxmlファイルを抽出
   url = 'http://weather.livedoor.com/forecast/rss/primary_area.xml'
   req = urllib.request.Request(url)
   with urllib.request.urlopen(req) as response:
