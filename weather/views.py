@@ -5,6 +5,7 @@ from .models import Pref,City
 import urllib.request
 import urllib.parse
 import xml.etree.ElementTree as ET
+from django.contrib import messages
 
 @login_required
 def index(request):
@@ -22,12 +23,16 @@ def update(request):
   citys = City.objects.all()
   citys.delete()
   
-  # livedoor提供のcityIDが定義されたxmlファイルを抽出
-  url = 'http://weather.livedoor.com/forecast/rss/primary_area.xml'
-  req = urllib.request.Request(url)
-  with urllib.request.urlopen(req) as response:
-    xml_string = response.read()
-  root = ET.fromstring(xml_string)
+  try:
+    # livedoor提供のcityIDが定義されたxmlファイルを抽出
+    url = 'http://weather.livedoor.com/forecast/rss/primary_area.xml'
+    req = urllib.request.Request(url)
+    with urllib.request.urlopen(req) as response:
+      xml_string = response.read()
+    root = ET.fromstring(xml_string)
+  except urllib.error.HTTPError:
+    messages.error(request, '元データを取得できませんでした。システム管理者へご連絡下さい。')
+    return render(request, 'weather/update.html')
 
   # タグを抽出し、テーブルに登録する
   for pref in root.iter('pref'):
@@ -37,4 +42,6 @@ def update(request):
       print(city.attrib['id'])
       ciyte_entity = City(pref_id=pref_entity.id ,name=city.attrib['title'], city_id=city.attrib['id'])
       ciyte_entity.save()
+      
+  messages.success(request, '更新処理に成功しました。')
   return render(request, 'weather/update.html')

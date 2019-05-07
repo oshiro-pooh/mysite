@@ -1,13 +1,20 @@
-{% extends 'todo/base.html' %}
+{% extends 'weather/base.html' %}
 
 {% block content %}
 <h1>Update</h1>
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
 
 <form action="{% url 'weather:update' %}" method="post">
     {% csrf_token %}
     <button>UPDATE</button>
 </form>
-    
+
 <form action="{% url 'weather:index' %}" method="post">
     {% csrf_token %}
     <button>◀︎Back</button>

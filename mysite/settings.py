@@ -135,3 +135,6 @@ STATIC_URL = '/static/'
 
 # ログイン後トップページにリダイレクト
 LOGIN_REDIRECT_URL = '/'
+
+# メッセージストレージ
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
