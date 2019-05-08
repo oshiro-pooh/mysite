@@ -39,7 +39,6 @@ def update(request):
     pref_entity = Pref(name=pref.attrib['title'])
     pref_entity.save()
     for city in pref.iter('city'):
-      print(city.attrib['id'])
       ciyte_entity = City(pref_id=pref_entity.id ,name=city.attrib['title'], city_id=city.attrib['id'])
       ciyte_entity.save()
       
