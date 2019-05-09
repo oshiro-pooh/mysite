@@ -6,10 +6,13 @@ import urllib.request
 import urllib.parse
 import xml.etree.ElementTree as ET
 from django.contrib import messages
+from .forms import PostForm
 
 @login_required
 def index(request):
-  return render(request, 'weather/index.html')
+  form = PostForm()
+  context = {'form': form, }
+  return render(request, 'weather/index.html', context)
 
 @login_required
 def next(request):

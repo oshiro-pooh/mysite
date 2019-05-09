@@ -6,7 +6,9 @@
     <button class="button button-outline">update</button>
 </form>
 <h1>Weather</h1>
-    
+{{ form.prefs.label }}：
+{{ form.prefs }}
+    <hr>
 <form action="{% url 'menu:index' %}" method="post">
     {% csrf_token %}
     <button>◀︎Back</button>
