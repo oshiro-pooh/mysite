@@ -19,8 +19,11 @@ def index(request):
 @login_required
 def changePrefs(request):
   form = PostForm(request.POST)
-  print('到着')
-  return HttpResponseRedirect(reverse('weather:index'))
+  # 都道府県名プルダウンの選択値を取得
+  form.fields['cities'].queryset = City.objects.filter(pref_id=request.POST['prefs'])
+  # 都道府県プルダウンの選択値を元に市町村名プルダウンの値を選定
+  context = {'form': form, }
+  return render(request, 'weather/index.html', context)
 
 @login_required
 def next(request):

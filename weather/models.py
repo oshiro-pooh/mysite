@@ -9,6 +9,7 @@ class Pref(models.Model):
   name = models.CharField(max_length=255)
 
   def __str__(self):
+    # プルダウンの表示値
     return self.name
 
 class City(models.Model):
@@ -24,4 +25,5 @@ class City(models.Model):
   city_id = models.CharField(max_length=6)
 
   def __str__(self):
+    # プルダウンの表示値
     return self.name

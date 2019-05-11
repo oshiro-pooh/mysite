@@ -14,11 +14,11 @@
 {% csrf_token %}
 {{ form.prefs.label }}：
 {{ form.prefs }}
-</form>
 
 {{ form.cities.label }}：
 {{ form.cities }}
-    <hr>
+</form>
+
 <form action="{% url 'menu:index' %}" method="post">
     {% csrf_token %}
     <button>◀︎Back</button>
