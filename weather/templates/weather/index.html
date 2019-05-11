@@ -4,8 +4,6 @@
 {% endblock %}
 
 {% block content %}
-<link type="text/javascript"
-    href="/../../static/js/index.js">
 <form style="padding-top:10px;" action="{% url 'weather:next' %}" method="post" class="float-right">
     {% csrf_token %}
     <button class="button button-outline">update</button>
@@ -13,6 +11,7 @@
 <h1>Weather</h1>
 
 <form action="{% url 'weather:changePrefs' %}" method="post">
+{% csrf_token %}
 {{ form.prefs.label }}：
 {{ form.prefs }}
 </form>
@@ -24,5 +23,5 @@
     {% csrf_token %}
     <button>◀︎Back</button>
 </form>
-    
+<script type="text/javascript" src="../../static/js/index.js"></script>
 {% endblock %}

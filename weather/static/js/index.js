@@ -1,8 +1,8 @@
 // 初期化処理
-(function () {
+window.onload = function() {
     addEvent();
     alert('読み込み成功');
-}());
+};
 
 function addEvent(){
   //オブジェクト"id_prefs"のchangeイベントにshowMessage関数を追加する

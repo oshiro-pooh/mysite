@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Pref,City
+from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .forms import PostForm
@@ -19,7 +20,7 @@ def index(request):
 def changePrefs(request):
   form = PostForm(request.POST)
   print('到着')
-  return HttpResponseRedirect(reverse('todo:index'))
+  return HttpResponseRedirect(reverse('weather:index'))
 
 @login_required
 def next(request):
