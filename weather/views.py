@@ -2,17 +2,24 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Pref,City
+from django.http import HttpResponseRedirect
+from django.contrib import messages
+from .forms import PostForm
 import urllib.request
 import urllib.parse
 import xml.etree.ElementTree as ET
-from django.contrib import messages
-from .forms import PostForm
 
 @login_required
 def index(request):
   form = PostForm()
   context = {'form': form, }
   return render(request, 'weather/index.html', context)
+
+@login_required
+def changePrefs(request):
+  form = PostForm(request.POST)
+  print('到着')
+  return HttpResponseRedirect(reverse('todo:index'))
 
 @login_required
 def next(request):
