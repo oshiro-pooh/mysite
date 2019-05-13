@@ -8,5 +8,6 @@ urlpatterns = [
     path('next', views.next, name='next'),
     path('update', views.update, name='update'),
     path('changePrefs', views.changePrefs, name='changePrefs'),
+    path('searchWeather', views.searchWeather, name='searchWeather'),
     path('', views.index, name='index'),
 ]

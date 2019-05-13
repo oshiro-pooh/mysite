@@ -14,9 +14,13 @@
 {% csrf_token %}
 {{ form.prefs.label }}：
 {{ form.prefs }}
+</form>
 
+<form action="{% url 'weather:searchWeather' %}" method="post">
+{% csrf_token %}
 {{ form.cities.label }}：
 {{ form.cities }}
+<button class="button">search</button>
 </form>
 
 <form action="{% url 'menu:index' %}" method="post">

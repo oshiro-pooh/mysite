@@ -9,6 +9,7 @@ from .forms import PostForm
 import urllib.request
 import urllib.parse
 import xml.etree.ElementTree as ET
+import requests
 
 @login_required
 def index(request):
@@ -22,6 +23,24 @@ def changePrefs(request):
   # 都道府県名プルダウンの選択値を取得
   form.fields['cities'].queryset = City.objects.filter(pref_id=request.POST['prefs'])
   # 都道府県プルダウンの選択値を元に市町村名プルダウンの値を選定
+  context = {'form': form, }
+  return render(request, 'weather/index.html', context)
+  
+@login_required
+def searchWeather(request):
+  # お天気WebサービスAPIのURL
+  url = 'http://weather.livedoor.com/forecast/webservice/json/v1'
+  
+  form = PostForm(request.POST)
+  # 市町村名プルダウンの選択値を取得
+  city_id = pref_id=request.POST['cities']
+  payload = {'city':city_id}
+  tenki_data = requests.get(url, params=payload).json() 
+  # TODO 画面にレスポンスとして返却する
+  # TODO また、「changePrefs」と「searchWeather」を同じフォームで取り扱えるよう実装を変更する
+  print(tenki_data['forecasts'][0]['dateLabel'] + ' の天気は ' + tenki_data['forecasts'][0]['telop'] + ' です。')
+  print(tenki_data['forecasts'][1]['dateLabel'] + ' の天気は ' + tenki_data['forecasts'][1]['telop'] + ' です。')
+  # 市町村名プルダウンの選択値を元に天気を検索する
   context = {'form': form, }
   return render(request, 'weather/index.html', context)
 
