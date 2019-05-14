@@ -20,6 +20,12 @@
 {% csrf_token %}
 {{ form.cities.label }}：
 {{ form.cities }}
+
+{% for weather in weather_list %}
+{{weather}}
+<br>
+{% endfor %}
+<br>
 <button class="button">search</button>
 </form>
 

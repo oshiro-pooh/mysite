@@ -38,10 +38,11 @@ def searchWeather(request):
   tenki_data = requests.get(url, params=payload).json() 
   # TODO 画面にレスポンスとして返却する
   # TODO また、「changePrefs」と「searchWeather」を同じフォームで取り扱えるよう実装を変更する
-  print(tenki_data['forecasts'][0]['dateLabel'] + ' の天気は ' + tenki_data['forecasts'][0]['telop'] + ' です。')
-  print(tenki_data['forecasts'][1]['dateLabel'] + ' の天気は ' + tenki_data['forecasts'][1]['telop'] + ' です。')
+  today_weather = tenki_data['forecasts'][0]['dateLabel'] + ' の天気は ' + tenki_data['forecasts'][0]['telop'] + ' です。'
+  tomorrow_weather = tenki_data['forecasts'][1]['dateLabel'] + ' の天気は ' + tenki_data['forecasts'][1]['telop'] + ' です。'
+  weather_list = [today_weather, tomorrow_weather]
   # 市町村名プルダウンの選択値を元に天気を検索する
-  context = {'form': form, }
+  context = {'form': form, 'weather_list': weather_list}
   return render(request, 'weather/index.html', context)
 
 @login_required
