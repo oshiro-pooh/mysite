@@ -10,14 +10,11 @@
 </form>
 <h1>Weather</h1>
 
-<form action="{% url 'weather:changePrefs' %}" method="post">
+<form action="{% url 'weather:someView' %}" method="post">
 {% csrf_token %}
 {{ form.prefs.label }}：
 {{ form.prefs }}
-</form>
 
-<form action="{% url 'weather:searchWeather' %}" method="post">
-{% csrf_token %}
 {{ form.cities.label }}：
 {{ form.cities }}
 
@@ -26,7 +23,8 @@
 <br>
 {% endfor %}
 <br>
-<button class="button">search</button>
+<button class="button" id="changePrefs" style="display:none" value="changePrefs">change</button>
+<button class="button" id="searchWeather" value="searchWeather">search</button>
 </form>
 
 <form action="{% url 'menu:index' %}" method="post">

@@ -13,7 +13,7 @@ function addEvent(){
 function changePrefs(){
   if(document.getElementById("id_prefs").value !== '') {
     // 都道府名プルダウンで空白以外を選んだ場合
-    this.form.submit();
+    document.getElementById("searchWeather").click()
   } else {
     // 都道府名プルダウンで空白を選んだ場合
     // 市町村名プルダウンの選択値リストを削除

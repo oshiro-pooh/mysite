@@ -16,7 +16,8 @@ class PostForm(forms.ModelForm):
     label='市町村名',
     queryset=Pref.objects.none(),
     empty_label='',
-    to_field_name="city_id"
+    to_field_name="city_id",
+    required=False
     )
     
     class Meta:

@@ -18,6 +18,11 @@ def index(request):
   return render(request, 'weather/index.html', context)
 
 @login_required
+def someView(request):
+    print(request.POST)
+    return changePrefs(request)
+
+@login_required
 def changePrefs(request):
   form = PostForm(request.POST)
   # 都道府県名プルダウンの選択値を取得
