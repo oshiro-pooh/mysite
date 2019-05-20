@@ -23,8 +23,8 @@
 <br>
 {% endfor %}
 <br>
-<button class="button" id="changePrefs" style="display:none" value="changePrefs">change</button>
-<button class="button" id="searchWeather" value="searchWeather">search</button>
+<input type="submit" class="button" id="changePrefs" name="changePrefs" style="display:none" value="change">
+<input type="submit" class="button" id="searchWeather" name="searchWeather" value="search">
 </form>
 
 <form action="{% url 'menu:index' %}" method="post">

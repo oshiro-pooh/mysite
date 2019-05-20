@@ -20,7 +20,10 @@ def index(request):
 @login_required
 def someView(request):
     print(request.POST)
-    return changePrefs(request)
+    if 'changePrefs' in request.POST:
+      return changePrefs(request)
+    elif 'searchWeather' in request.POST:
+      return searchWeather(request)
 
 @login_required
 def changePrefs(request):
