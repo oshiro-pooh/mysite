@@ -28,9 +28,8 @@ def someView(request):
 @login_required
 def changePrefs(request):
   form = PostForm(request.POST)
-  # 都道府県名プルダウンの選択値を取得
-  form.fields['cities'].queryset = City.objects.filter(pref_id=request.POST['prefs'])
   # 都道府県プルダウンの選択値を元に市町村名プルダウンの値を選定
+  form.fields['cities'].queryset = City.objects.filter(pref_id=request.POST['prefs'])
   context = {'form': form, }
   return render(request, 'weather/index.html', context)
   
@@ -39,9 +38,14 @@ def searchWeather(request):
   # お天気WebサービスAPIのURL
   url = 'http://weather.livedoor.com/forecast/webservice/json/v1'
   
+  print(request.POST)
   form = PostForm(request.POST)
+  
+  # 都道府県プルダウンの選択値を元に市町村名プルダウンの値を選定
+  form.fields['cities'].queryset = City.objects.filter(pref_id=request.POST['prefs'])
+  
   # 市町村名プルダウンの選択値を取得
-  city_id = pref_id=request.POST['cities']
+  city_id = request.POST['cities']
   payload = {'city':city_id}
   tenki_data = requests.get(url, params=payload).json() 
   # TODO 画面にレスポンスとして返却する
