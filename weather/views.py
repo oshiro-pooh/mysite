@@ -48,8 +48,8 @@ def searchWeather(request):
   city_id = request.POST['cities']
   payload = {'city':city_id}
   tenki_data = requests.get(url, params=payload).json() 
-  # TODO 画面にレスポンスとして返却する
-  # TODO また、「changePrefs」と「searchWeather」を同じフォームで取り扱えるよう実装を変更する
+
+  # 画面出力情報形成
   today_weather = tenki_data['forecasts'][0]['dateLabel'] + ' の天気は ' + tenki_data['forecasts'][0]['telop'] + ' です。'
   tomorrow_weather = tenki_data['forecasts'][1]['dateLabel'] + ' の天気は ' + tenki_data['forecasts'][1]['telop'] + ' です。'
   weather_list = [today_weather, tomorrow_weather]
