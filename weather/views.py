@@ -19,7 +19,7 @@ def index(request):
 
 @login_required
 def someView(request):
-    print(request.POST)
+    # 同formからのPOSTを各処理へ振り分け
     if 'changePrefs' in request.POST:
       return changePrefs(request)
     elif 'searchWeather' in request.POST:
@@ -28,7 +28,7 @@ def someView(request):
 @login_required
 def changePrefs(request):
   form = PostForm(request.POST)
-  # 都道府県プルダウンの選択値を元に市町村名プルダウンの値を選定
+  # 都道府県プルダウンの選択値を元に市町村名プルダウンの値を選定するクエリを登録
   form.fields['cities'].queryset = City.objects.filter(pref_id=request.POST['prefs'])
   context = {'form': form, }
   return render(request, 'weather/index.html', context)
@@ -38,13 +38,12 @@ def searchWeather(request):
   # お天気WebサービスAPIのURL
   url = 'http://weather.livedoor.com/forecast/webservice/json/v1'
   
-  print(request.POST)
   form = PostForm(request.POST)
   
-  # 都道府県プルダウンの選択値を元に市町村名プルダウンの値を選定
+  # 都道府県プルダウンの選択値を元に市町村名プルダウンの値を選定するクエリを登録
   form.fields['cities'].queryset = City.objects.filter(pref_id=request.POST['prefs'])
   
-  # 市町村名プルダウンの選択値を取得
+  # 市町村名プルダウンの選択値を元に天気を検索する
   city_id = request.POST['cities']
   payload = {'city':city_id}
   tenki_data = requests.get(url, params=payload).json() 
@@ -53,7 +52,6 @@ def searchWeather(request):
   today_weather = tenki_data['forecasts'][0]['dateLabel'] + ' の天気は ' + tenki_data['forecasts'][0]['telop'] + ' です。'
   tomorrow_weather = tenki_data['forecasts'][1]['dateLabel'] + ' の天気は ' + tenki_data['forecasts'][1]['telop'] + ' です。'
   weather_list = [today_weather, tomorrow_weather]
-  # 市町村名プルダウンの選択値を元に天気を検索する
   context = {'form': form, 'weather_list': weather_list}
   return render(request, 'weather/index.html', context)
 
