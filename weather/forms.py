@@ -23,3 +23,13 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = City
         fields = '__all__'
+        
+    def clean(self) :
+        # 入力されたデータを取得
+        prefs = self.cleaned_data.get('prefs')
+        cities = self.cleaned_data.get('cities')
+        
+        # TODO チェックメソッド追加 
+        print('通貨')
+        
+        return self.cleaned_data

@@ -30,6 +30,7 @@ def changePrefs(request):
   form = PostForm(request.POST)
   # 都道府県プルダウンの選択値を元に市町村名プルダウンの値を選定するクエリを登録
   form.fields['cities'].queryset = City.objects.filter(pref_id=request.POST['prefs'])
+  form.fields['cities'].to_field_name = "city_id"
   context = {'form': form, }
   return render(request, 'weather/index.html', context)
   
@@ -39,6 +40,10 @@ def searchWeather(request):
   url = 'http://weather.livedoor.com/forecast/webservice/json/v1'
   
   form = PostForm(request.POST)
+  
+  # バリデーションを明示的に呼び出し
+  # TODO forms.py の cities の to_field_name起因でエラー発生
+  # form.is_valid()
   
   # 都道府県プルダウンの選択値を元に市町村名プルダウンの値を選定するクエリを登録
   form.fields['cities'].queryset = City.objects.filter(pref_id=request.POST['prefs'])
