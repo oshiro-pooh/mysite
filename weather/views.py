@@ -41,9 +41,9 @@ def searchWeather(request):
   
   form = PostForm(request.POST)
   
+  form.fields['cities'].to_field_name = "" # TODO forms.py の cities の to_field_name起因でエラー発生
   # バリデーションを明示的に呼び出し
-  # TODO forms.py の cities の to_field_name起因でエラー発生
-  # form.is_valid()
+  form.is_valid()
   
   # 都道府県プルダウンの選択値を元に市町村名プルダウンの値を選定するクエリを登録
   form.fields['cities'].queryset = City.objects.filter(pref_id=request.POST['prefs'])
@@ -57,6 +57,7 @@ def searchWeather(request):
   today_weather = tenki_data['forecasts'][0]['dateLabel'] + ' の天気は ' + tenki_data['forecasts'][0]['telop'] + ' です。'
   tomorrow_weather = tenki_data['forecasts'][1]['dateLabel'] + ' の天気は ' + tenki_data['forecasts'][1]['telop'] + ' です。'
   weather_list = [today_weather, tomorrow_weather]
+  form.fields['cities'].to_field_name = "city_id" # TODO forms.py の cities の to_field_name起因でエラー発生
   context = {'form': form, 'weather_list': weather_list}
   return render(request, 'weather/index.html', context)
 

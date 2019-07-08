@@ -30,6 +30,8 @@ class PostForm(forms.ModelForm):
         cities = self.cleaned_data.get('cities')
         
         # TODO チェックメソッド追加 
-        print('通貨')
+        #if (prefs and not cities) :
+        #  raise forms.ValidationError("市町村を選んだください")
+
         
         return self.cleaned_data
