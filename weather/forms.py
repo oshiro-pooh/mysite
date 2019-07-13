@@ -14,7 +14,7 @@ class PostForm(forms.ModelForm):
         
     cities = forms.ModelChoiceField(
     label='市町村名',
-    queryset=Pref.objects.none(),
+    queryset=City.objects,
     empty_label='',
     to_field_name="city_id",
     required=False
